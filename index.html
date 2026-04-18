@@ -1,0 +1,1171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nexus | Premium Mobile E-Commerce</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* Apple-Inspired Design System */
+        :root {
+            --color-bg-light: #ffffff;
+            --color-bg-card: #fbfbfd;
+            --color-bg-dark: #000000;
+            --color-bg-card-dark: #1d1d1f;
+            
+            --color-text-light: #1d1d1f;
+            --color-text-muted: #86868b;
+            --color-text-dark: #f5f5f7;
+            --color-text-dark-muted: #a1a1a6;
+            
+            --color-accent: #0066cc;
+            --color-accent-hover: #0077ed;
+            --color-success: #34c759;
+            
+            --radius-sm: 12px;
+            --radius-md: 24px;
+            --radius-lg: 32px;
+            --radius-pill: 999px;
+            
+            --shadow-subtle: 0 4px 24px rgba(0,0,0,0.04);
+            --shadow-hover: 0 16px 40px rgba(0,0,0,0.12);
+            
+            --transition-smooth: 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+        }
+
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--color-bg-light);
+            color: var(--color-text-light);
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        body {
+            line-height: 1.4;
+            overflow-x: hidden;
+        }
+
+        a { text-decoration: none; color: inherit; }
+        ul { list-style: none; }
+        img { max-width: 100%; display: block; object-fit: cover; }
+        button { cursor: pointer; border: none; background: none; font-family: inherit; }
+
+        /* Typography */
+        h1, h2, h3, h4 { letter-spacing: -0.04em; }
+        
+        .headline-xl {
+            font-size: clamp(48px, 6vw, 80px);
+            font-weight: 800;
+            line-height: 1.05;
+            letter-spacing: -0.05em;
+        }
+
+        .headline-lg {
+            font-size: clamp(32px, 4vw, 56px);
+            font-weight: 700;
+            line-height: 1.1;
+            letter-spacing: -0.04em;
+        }
+
+        .headline-md {
+            font-size: 28px;
+            font-weight: 600;
+            letter-spacing: -0.03em;
+        }
+
+        .text-body {
+            font-size: 19px;
+            color: var(--color-text-muted);
+            font-weight: 400;
+            line-height: 1.5;
+            letter-spacing: -0.01em;
+        }
+
+        /* Layout */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        .section-padding {
+            padding: 120px 0;
+        }
+
+        /* Navbar */
+        .navbar {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            height: 54px;
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: saturate(180%) blur(20px);
+            -webkit-backdrop-filter: saturate(180%) blur(20px);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+        }
+
+        .navbar .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+        }
+
+        .nav-logo {
+            font-weight: 700;
+            font-size: 20px;
+            letter-spacing: -0.5px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 32px;
+        }
+
+        .nav-links a {
+            font-size: 12px;
+            font-weight: 400;
+            color: rgba(0,0,0,0.8);
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover { color: #000; }
+
+        /* Buttons */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 12px 24px;
+            border-radius: var(--radius-pill);
+            font-size: 15px;
+            font-weight: 500;
+            transition: all var(--transition-smooth);
+        }
+
+        .btn-primary {
+            background: var(--color-accent);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: var(--color-accent-hover);
+            transform: scale(1.02);
+        }
+
+        .btn-dark {
+            background: #1d1d1f;
+            color: white;
+        }
+
+        .btn-dark:hover {
+            background: #000000;
+            transform: scale(1.02);
+        }
+
+        .btn-light {
+            background: #ffffff;
+            color: #1d1d1f;
+        }
+
+        .btn-light:hover {
+            background: #f5f5f7;
+            transform: scale(1.02);
+        }
+
+        /* Animations */
+        @keyframes revealUp {
+            from { opacity: 0; transform: translateY(40px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .animate-reveal {
+            animation: revealUp 1s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+            opacity: 0;
+            animation-timeline: view();
+            animation-range: entry 10% cover 25%;
+        }
+
+        .hero-reveal {
+            animation: revealUp 1.2s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+        }
+        .delay-1 { animation-delay: 0.1s; }
+        .delay-2 { animation-delay: 0.2s; }
+
+        /* Hero Section Premium Redesign */
+        .hero {
+            height: 100vh;
+            background: #000000;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            padding: 0 24px;
+            padding-top: 54px;
+        }
+
+        .hero-bg-flare {
+            position: absolute;
+            width: 120vw;
+            height: 120vw;
+            background: radial-gradient(circle at center, rgba(0, 102, 204, 0.12) 0%, transparent 60%);
+            top: -10%;
+            right: -10%;
+            z-index: 0;
+            animation: flareMove 25s infinite alternate ease-in-out;
+            pointer-events: none;
+        }
+
+        @keyframes flareMove {
+            0% { transform: translate(0, 0) scale(1); }
+            100% { transform: translate(-10%, -10%) scale(1.1); }
+        }
+
+        .hero-container {
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            align-items: center;
+            max-width: 1400px;
+            width: 100%;
+            z-index: 2;
+            gap: 80px;
+        }
+
+        .hero-content {
+            text-align: left;
+        }
+
+        .hero h1 {
+            background: linear-gradient(180deg, #ffffff 0%, #a1a1a6 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 32px;
+            line-height: 0.95;
+        }
+
+        .hero-visual {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            animation: heroImgFloat 8s infinite ease-in-out;
+        }
+
+        @keyframes heroImgFloat {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-30px) rotate(2deg); }
+        }
+
+        .hero-visual img {
+            width: 100%;
+            max-width: 600px;
+            filter: drop-shadow(0 50px 100px rgba(0, 102, 204, 0.15));
+        }
+
+        @media (max-width: 992px) {
+            .hero { height: auto; padding: 120px 24px; }
+            .hero-container { grid-template-columns: 1fr; text-align: center; gap: 64px; }
+            .hero-content { order: 1; text-align: center; }
+            .hero-visual { order: 2; }
+            .hero-visual img { max-width: 300px; }
+        }
+
+        /* Bento Grid System */
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            gap: 24px;
+            margin-top: 64px;
+        }
+
+        .bento-card {
+            background: var(--color-bg-card);
+            border-radius: var(--radius-lg);
+            padding: 48px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            position: relative;
+            overflow: hidden;
+            transition: transform var(--transition-smooth), box-shadow var(--transition-smooth);
+        }
+
+        .bento-card:hover {
+            transform: scale(1.01);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .bento-card.dark {
+            background: var(--color-bg-card-dark);
+            color: var(--color-text-dark);
+        }
+        
+        .bento-card.dark .text-body {
+            color: var(--color-text-dark-muted);
+        }
+
+        .col-12 { grid-column: span 12; }
+        .col-8 { grid-column: span 8; }
+        .col-6 { grid-column: span 6; }
+        .col-4 { grid-column: span 4; }
+
+        .bento-card.col-12 { flex-direction: row; align-items: center; justify-content: space-between; padding: 48px 64px; }
+        .bento-card.col-12 .card-content { width: 45%; max-width: none; }
+        .bento-card.col-12 .card-image-wrap { width: 50%; height: 400px; position: relative; bottom: auto; right: auto; margin-top: 0; }
+
+        .bento-card.col-8 { flex-direction: row; align-items: center; justify-content: space-between; padding: 48px; }
+        .bento-card.col-8 .card-content { width: 45%; max-width: none; }
+        .bento-card.col-8 .card-image-wrap { width: 50%; height: 350px; position: relative; bottom: auto; right: auto; margin-top: 0; }
+
+        .bento-card.col-6, .bento-card.col-4 { flex-direction: column; text-align: center; justify-content: space-between; }
+        .bento-card.col-6 .card-content, .bento-card.col-4 .card-content { width: 100%; max-width: none; display: flex; flex-direction: column; align-items: center; }
+        .bento-card.col-6 .card-image-wrap, .bento-card.col-4 .card-image-wrap { width: 100%; height: 300px; position: relative; bottom: auto; right: auto; margin-top: 48px; }
+
+        .card-content {
+            z-index: 2;
+        }
+
+        .card-image-wrap {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1;
+        }
+
+        .card-image-wrap img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            transition: transform var(--transition-smooth);
+        }
+
+        .bento-card:hover .card-image-wrap img {
+            transform: scale(1.05);
+        }
+
+        .price-tag {
+            font-size: 21px;
+            font-weight: 600;
+            margin: 16px 0 24px;
+        }
+
+        .qty-controls {
+            display: inline-flex;
+            align-items: center;
+            background: rgba(0,0,0,0.05);
+            border-radius: var(--radius-pill);
+            padding: 4px;
+            margin-right: 16px;
+        }
+        .dark .qty-controls { background: rgba(255,255,255,0.1); }
+
+        .qty-btn {
+            width: 32px; height: 32px;
+            border-radius: 50%;
+            background: white;
+            color: black;
+            font-weight: 500;
+            box-shadow: var(--shadow-subtle);
+        }
+        
+        .qty-val { padding: 0 16px; font-weight: 600; font-size: 14px; }
+
+        /* About Section Ultimate Attractive */
+        .about-section {
+            background: #000000;
+            position: relative;
+            padding: 240px 24px;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 80vh;
+        }
+
+        .about-bg-image {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: url('https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1920&q=80') center/cover;
+            filter: brightness(0.3) saturate(0.5);
+            z-index: 0;
+            transform: scale(1.1);
+            transition: transform 15s linear;
+        }
+
+        .about-section.animate-reveal .about-bg-image {
+            transform: scale(1);
+        }
+
+        .about-glass-card {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 48px;
+            padding: 100px 64px;
+            max-width: 900px;
+            width: 100%;
+            z-index: 2;
+            text-align: center;
+            box-shadow: 0 40px 120px rgba(0,0,0,0.6);
+            position: relative;
+        }
+
+        .about-eyebrow {
+            font-size: 14px;
+            font-weight: 700;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--color-accent);
+            margin-bottom: 32px;
+            display: block;
+        }
+
+        .about-headline {
+            font-size: clamp(32px, 6vw, 64px);
+            font-weight: 800;
+            line-height: 1.1;
+            letter-spacing: -0.04em;
+            margin-bottom: 40px;
+            color: white;
+        }
+
+        .about-desc {
+            font-size: 21px;
+            color: #a1a1a6;
+            line-height: 1.5;
+            max-width: 650px;
+            margin: 0 auto 56px;
+        }
+
+        .about-signature {
+            font-size: 15px;
+            color: white;
+            font-weight: 600;
+            opacity: 0.6;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        /* Offers Section */
+        .offers-section { background: #ffffff; }
+        
+        .offers-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 24px;
+        }
+
+        .offer-card {
+            background: #fbfbfd;
+            border-radius: var(--radius-lg);
+            padding: 48px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            box-shadow: var(--shadow-subtle);
+            transition: transform var(--transition-smooth);
+        }
+        
+        .offer-card:hover { transform: scale(1.01); box-shadow: var(--shadow-hover); }
+
+        .offer-card.dark-offer {
+            background: var(--color-bg-card-dark);
+            color: white;
+        }
+        
+        .offer-img-wrap {
+            width: 100%;
+            height: 350px;
+            margin-top: 48px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .offer-img-wrap img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            transition: transform var(--transition-smooth);
+        }
+        
+        .offer-card:hover .offer-img-wrap img { transform: scale(1.05); }
+
+        /* Contact Section Real */
+        .contact-section {
+            background: #000000;
+            color: white;
+            padding-bottom: 160px;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            gap: 80px;
+            margin-top: 64px;
+            align-items: center;
+        }
+
+        .contact-form-glass {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.1);
+            backdrop-filter: blur(20px);
+            border-radius: 40px;
+            padding: 48px;
+            box-shadow: 0 32px 64px rgba(0,0,0,0.5);
+        }
+
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+
+        .input-group input, .input-group textarea, .input-group select {
+            width: 100%;
+            padding: 20px 24px;
+            border: 1px solid rgba(255,255,255,0.2);
+            border-radius: 16px;
+            font-size: 17px;
+            font-family: inherit;
+            background: rgba(0,0,0,0.5);
+            color: white;
+            transition: all 0.3s ease;
+            outline: none;
+        }
+
+        .input-group select { appearance: none; }
+        .input-group select option { color: black; }
+
+        .input-group input:focus, .input-group textarea:focus, .input-group select:focus {
+            border-color: #ffffff;
+            background: rgba(0,0,0,0.8);
+            box-shadow: 0 0 0 4px rgba(255,255,255,0.1);
+        }
+        
+        .input-group input::placeholder, .input-group textarea::placeholder {
+            color: #a1a1a6;
+        }
+
+        .support-card {
+            width: 100%;
+            height: 100%;
+            min-height: 500px;
+            background: linear-gradient(135deg, #1d1d1f 0%, #000000 100%);
+            border-radius: 40px;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 48px;
+            border: 1px solid rgba(255,255,255,0.1);
+            perspective: 1000px;
+            transform-style: preserve-3d;
+            transition: transform 0.5s ease;
+        }
+        
+        .support-card:hover {
+            transform: rotateY(-5deg) rotateX(5deg);
+        }
+        
+        .support-card-glow {
+            position: absolute;
+            top: -50%; left: -50%;
+            width: 200%; height: 200%;
+            background: radial-gradient(circle at center, rgba(0,102,204,0.15) 0%, rgba(0,0,0,0) 50%);
+            pointer-events: none;
+        }
+
+        .support-card h3 {
+            font-size: 40px;
+            margin-bottom: 24px;
+            background: linear-gradient(180deg, #ffffff 0%, #a1a1a6 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Footer */
+        footer {
+            background: #f5f5f7;
+            padding: 64px 24px 32px;
+            border-top: 1px solid #d2d2d7;
+            font-size: 12px;
+            color: var(--color-text-muted);
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 32px;
+            max-width: 1200px;
+            margin: 0 auto 48px;
+        }
+
+        .footer-col h4 {
+            color: #1d1d1f;
+            font-weight: 600;
+            margin-bottom: 16px;
+            font-size: 12px;
+        }
+
+        .footer-col ul { display: flex; flex-direction: column; gap: 12px; }
+        .footer-col a:hover { color: #1d1d1f; text-decoration: underline; }
+
+        @media (max-width: 992px) {
+            .col-12, .col-8, .col-6, .col-4 { grid-column: span 12; }
+            .bento-card.col-12, .bento-card.col-8, .bento-card.col-6, .bento-card.col-4 {
+                flex-direction: column;
+                padding: 32px;
+                text-align: center;
+            }
+            .bento-card .card-content { width: 100%; display: flex; flex-direction: column; align-items: center; }
+            .bento-card .card-image-wrap { width: 100%; height: 300px; margin-top: 32px; }
+            
+            .contact-grid { grid-template-columns: 1fr; }
+            .offers-grid { grid-template-columns: 1fr; }
+            .offer-card { padding: 32px; }
+            .offer-img-wrap { height: 250px; }
+            
+            .navbar .container { flex-direction: column; gap: 12px; padding: 12px 24px; }
+            .navbar { height: auto; }
+            .nav-links { 
+                display: flex; 
+                width: 100%; 
+                overflow-x: auto; 
+                padding-bottom: 8px;
+                gap: 24px;
+                -webkit-overflow-scrolling: touch;
+            }
+            .nav-links::-webkit-scrollbar { display: none; }
+        }
+        /* Toast Notification */
+        .toast {
+            position: fixed;
+            top: 24px;
+            left: 50%;
+            transform: translateX(-50%) translateY(-100px);
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 16px 32px;
+            border-radius: 100px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            z-index: 10000;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            transition: transform 0.6s cubic-bezier(0.2, 1, 0.2, 1);
+            color: #1d1d1f;
+            font-weight: 600;
+            pointer-events: none;
+        }
+
+        .toast.show {
+            transform: translateX(-50%) translateY(0);
+        }
+
+        /* Shopping Bag Badge */
+        .bag-icon {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: rgba(0,0,0,0.05);
+            border-radius: 50%;
+            margin-left: 24px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .bag-icon:hover { background: rgba(0,0,0,0.1); transform: scale(1.05); }
+
+        .bag-badge {
+            position: absolute;
+            top: -2px;
+            right: -2px;
+            background: #0066cc;
+            color: white;
+            font-size: 10px;
+            font-weight: 700;
+            min-width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2px;
+            border: 2px solid white;
+            opacity: 0;
+            transform: scale(0.5);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .bag-badge.visible { opacity: 1; transform: scale(1); }
+    </style>
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="container" style="display: flex; align-items: center; justify-content: space-between;">
+            <a href="#" class="nav-logo">Nexus.</a>
+            <div style="display: flex; align-items: center;">
+                <div class="nav-links">
+                    <a href="#apple">Apple</a>
+                    <a href="#samsung">Samsung</a>
+                    <a href="#oneplus">OnePlus</a>
+                    <a href="#google">Google</a>
+                    <a href="#about">About</a>
+                    <a href="#offers">Offers</a>
+                    <a href="#contact">Contact</a>
+                </div>
+                <div class="bag-icon">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg>
+                    <div class="bag-badge">0</div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section Premium -->
+    <section class="hero">
+        <div class="hero-bg-flare"></div>
+        <div class="container hero-container">
+            <div class="hero-content">
+                <span style="font-size: 14px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--color-accent); margin-bottom: 24px; display: block;" class="hero-reveal">New Arrival</span>
+                <h1 class="headline-xl hero-reveal delay-1">Titanium.<br>Pro cameras.<br>Unstoppable.</h1>
+                <p class="text-body hero-reveal delay-2" style="margin-bottom: 48px; font-size: 24px; color: #a1a1a6;">Experience the next generation of iPhone 15 Pro Max.</p>
+                <div class="hero-reveal delay-2">
+                    <a href="#apple" class="btn btn-light" style="font-size: 17px; padding: 20px 40px;">Shop Now</a>
+                </div>
+            </div>
+            <div class="hero-visual hero-reveal delay-1">
+                <img src="assets/iphone_15_pro_max_1776504783590.png" alt="iPhone 15 Pro Max Hero Visual">
+            </div>
+        </div>
+    </section>
+
+    <!-- Apple Bento Section -->
+    <section id="apple" class="section-padding">
+        <div class="container">
+            <h2 class="headline-lg animate-reveal" style="text-align: center;">Apple.</h2>
+            <p class="text-body animate-reveal" style="text-align: center; margin-bottom: 64px;">Wonder awaits.</p>
+            
+            <div class="bento-grid">
+                <!-- Large Card -->
+                <div class="bento-card dark col-12 animate-reveal" style="min-height: 600px;">
+                    <div class="card-content">
+                        <h3 class="headline-md">iPhone 15 Pro Max</h3>
+                        <p class="text-body" style="margin-top: 16px;">Titanium. So strong. So light. So Pro.</p>
+                        <div class="price-tag">From ₹1,49,900</div>
+                        <div style="display: flex; align-items: center;">
+                            <div class="qty-controls">
+                                <button class="qty-btn">-</button>
+                                <span class="qty-val">1</span>
+                                <button class="qty-btn">+</button>
+                            </div>
+                            <button class="btn btn-light">Buy</button>
+                        </div>
+                    </div>
+                    <div class="card-image-wrap">
+                        <img src="assets/iphone_15_pro_max_1776504783590.png" alt="iPhone 15 Pro Max">
+                    </div>
+                </div>
+                
+                <!-- Half Cards -->
+                <div class="bento-card col-6 animate-reveal">
+                    <div class="card-content">
+                        <h3 class="headline-md">MacBook Pro 16"</h3>
+                        <p class="text-body" style="margin-top: 8px;">Mind-blowing. Head-turning.</p>
+                        <div class="price-tag">From ₹2,49,900</div>
+                        <div style="display: flex; align-items: center;">
+                            <button class="btn btn-dark">Buy</button>
+                        </div>
+                    </div>
+                    <div class="card-image-wrap center-img">
+                        <img src="assets/macbook_pro_16_1776504808261.png" alt="MacBook Pro">
+                    </div>
+                </div>
+
+                <div class="bento-card col-6 animate-reveal">
+                    <div class="card-content">
+                        <h3 class="headline-md">Apple Watch Ultra 2</h3>
+                        <p class="text-body" style="margin-top: 8px;">Next level adventure.</p>
+                        <div class="price-tag">From ₹89,900</div>
+                        <div style="display: flex; align-items: center;">
+                            <button class="btn btn-dark">Buy</button>
+                        </div>
+                    </div>
+                    <div class="card-image-wrap center-img">
+                        <img src="assets/apple_watch_ultra_2_1776504829716.png" alt="Apple Watch Ultra">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Samsung Bento Section -->
+    <section id="samsung" class="section-padding" style="background: #f5f5f7;">
+        <div class="container">
+            <h2 class="headline-lg animate-reveal" style="text-align: center;">Samsung.</h2>
+            <p class="text-body animate-reveal" style="text-align: center; margin-bottom: 64px;">Galaxy AI is here.</p>
+            
+            <div class="bento-grid">
+                <div class="bento-card col-8 animate-reveal" style="background: #ffffff;">
+                    <div class="card-content">
+                        <h3 class="headline-md">Galaxy S24 Ultra</h3>
+                        <p class="text-body" style="margin-top: 16px;">Epic, just like that.</p>
+                        <div class="price-tag">From ₹1,29,999</div>
+                        <button class="btn btn-dark">Buy Now</button>
+                    </div>
+                    <div class="card-image-wrap">
+                        <img src="assets/galaxy_s24_ultra_1776504848463.png" alt="Galaxy S24 Ultra">
+                    </div>
+                </div>
+                
+                <div class="bento-card col-4 dark animate-reveal">
+                    <div class="card-content">
+                        <h3 class="headline-md">Z Fold 5</h3>
+                        <p class="text-body" style="margin-top: 8px;">Unfold your world.</p>
+                        <div class="price-tag">₹1,54,999</div>
+                        <button class="btn btn-light">Buy</button>
+                    </div>
+                    <div class="card-image-wrap center-img">
+                        <img src="assets/galaxy_z_fold_5_1776504871435.png" alt="Galaxy Z Fold 5">
+                    </div>
+                </div>
+                
+                <div class="bento-card col-12 animate-reveal" style="background: #ffffff; min-height: 400px;">
+                    <div class="card-content">
+                        <h3 class="headline-md">Galaxy Watch 6 Classic</h3>
+                        <p class="text-body" style="margin-top: 8px;">The bezel is back.</p>
+                        <div class="price-tag">₹36,999</div>
+                        <button class="btn btn-dark">Buy Now</button>
+                    </div>
+                    <div class="card-image-wrap">
+                        <img src="assets/galaxy_watch_6_1776505256882.png" alt="Galaxy Watch 6" style="border-radius: 24px; box-shadow: var(--shadow-subtle);">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- OnePlus Bento Section -->
+    <section id="oneplus" class="section-padding">
+        <div class="container">
+            <h2 class="headline-lg animate-reveal" style="text-align: center;">OnePlus.</h2>
+            <p class="text-body animate-reveal" style="text-align: center; margin-bottom: 64px;">Never Settle.</p>
+            
+            <div class="bento-grid">
+                <div class="bento-card col-12 animate-reveal" style="min-height: 500px; background: #e3f2e1;">
+                    <div class="card-content">
+                        <h3 class="headline-md">OnePlus 12</h3>
+                        <p class="text-body" style="margin-top: 16px; color: #2e5934;">Smooth beyond belief.</p>
+                        <div class="price-tag" style="color: #1a3a1f;">From ₹64,999</div>
+                        <button class="btn btn-dark">Buy Now</button>
+                    </div>
+                    <div class="card-image-wrap">
+                        <img src="https://i0.wp.com/www.smartprix.com/bytes/wp-content/uploads/2023/11/OnePlus-12.png?fit=1920%2C1080&ssl=1" alt="OnePlus 12" style="mix-blend-mode: multiply;">
+                    </div>
+                </div>
+                
+                <div class="bento-card col-6 animate-reveal">
+                    <div class="card-content">
+                        <h3 class="headline-md">OnePlus Pad</h3>
+                        <p class="text-body" style="margin-top: 8px;">Smooth without equal.</p>
+                        <div class="price-tag">₹37,999</div>
+                        <button class="btn btn-dark">Buy</button>
+                    </div>
+                    <div class="card-image-wrap center-img">
+                        <img src="https://images.unsplash.com/photo-1544244015-0df4b3ffc6b0?auto=format&fit=crop&w=600&q=80" alt="OnePlus Pad" style="border-radius: 16px;">
+                    </div>
+                </div>
+
+                <div class="bento-card col-6 dark animate-reveal">
+                    <div class="card-content">
+                        <h3 class="headline-md">OnePlus Buds Pro 2</h3>
+                        <p class="text-body" style="margin-top: 8px;">Melody made bold.</p>
+                        <div class="price-tag">₹11,999</div>
+                        <button class="btn btn-light">Buy</button>
+                    </div>
+                    <div class="card-image-wrap center-img">
+                        <img src="https://images.unsplash.com/photo-1590658268037-6bf12165a8df?auto=format&fit=crop&w=600&q=80" alt="OnePlus Buds" style="border-radius: 16px;">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Google Bento Section -->
+    <section id="google" class="section-padding" style="background: #000000; color: white;">
+        <div class="container">
+            <h2 class="headline-lg animate-reveal" style="text-align: center;">Google Pixel.</h2>
+            <p class="text-body animate-reveal" style="text-align: center; margin-bottom: 64px;">The only phone engineered by Google.</p>
+            
+            <div class="bento-grid">
+                <div class="bento-card col-8 animate-reveal" style="background: #1d1d1f; color: white;">
+                    <div class="card-content">
+                        <h3 class="headline-md">Pixel 8 Pro</h3>
+                        <p class="text-body" style="margin-top: 16px; color: #a1a1a6;">The magic of Google.</p>
+                        <div class="price-tag">₹94,999</div>
+                        <button class="btn btn-light">Buy Now</button>
+                    </div>
+                    <div class="card-image-wrap">
+                        <img src="https://images.unsplash.com/photo-1598327105666-5b89351aff97?auto=format&fit=crop&w=800&q=80" alt="Pixel Phone" style="border-radius: 24px;">
+                    </div>
+                </div>
+                
+                <div class="bento-card col-4 animate-reveal" style="background: #f5f5f7; color: black;">
+                    <div class="card-content">
+                        <h3 class="headline-md">Pixel Watch 2</h3>
+                        <p class="text-body" style="margin-top: 8px;">Help by Google.</p>
+                        <div class="price-tag">₹39,900</div>
+                        <button class="btn btn-dark">Buy</button>
+                    </div>
+                    <div class="card-image-wrap center-img">
+                        <img src="https://images.unsplash.com/photo-1508685096489-7aacd43bd3b1?auto=format&fit=crop&w=600&q=80" alt="Pixel Watch">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section Ultimate Attractive -->
+    <section id="about" class="about-section animate-reveal">
+        <div class="about-bg-image"></div>
+        <div class="container" style="position: relative; z-index: 2; display: flex; justify-content: center;">
+            <div class="about-glass-card">
+                <span class="about-eyebrow">Our Philosophy</span>
+                <h2 class="about-headline">Technology that empowers.</h2>
+                <p class="about-desc">
+                    We curate the world's most premium devices, offering you unparalleled 
+                    design, power, and seamless integration into your life.
+                </p>
+                <div class="about-signature">Designed by Nexus in Silicon Valley</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Offers Section -->
+    <section id="offers" class="section-padding offers-section">
+        <div class="container animate-reveal">
+            <h2 class="headline-lg" style="margin-bottom: 64px; text-align: center;">Exclusive Offers.</h2>
+            
+            <div class="offers-grid">
+                <div class="offer-card">
+                    <span style="font-size: 14px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: #0066cc;">Trade-In Program</span>
+                    <h3 class="headline-lg" style="margin: 16px 0 16px; line-height: 1.1;">Get up to ₹60,000 credit.</h3>
+                    <p class="text-body" style="color: #1d1d1f; margin-bottom: 24px;">Upgrade to the titanium era today.</p>
+                    <button class="btn btn-dark" style="padding: 12px 24px;">Estimate Value</button>
+                    
+                    <div class="offer-img-wrap">
+                        <img src="assets/iphone_15_pro_max_1776504783590.png" alt="iPhone 15 Pro Max">
+                    </div>
+                </div>
+
+                <div class="offer-card dark-offer">
+                    <span style="font-size: 14px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: #a1a1a6;">Bundle & Save</span>
+                    <h3 class="headline-lg" style="margin: 16px 0 16px; line-height: 1.1;">Save 20% on Ecosystem.</h3>
+                    <p class="text-body" style="color: #a1a1a6; margin-bottom: 24px;">Purchase Galaxy S24, Watch, and Buds together.</p>
+                    <button class="btn btn-light" style="padding: 12px 24px;">Build Your Bundle</button>
+                    
+                    <div class="offer-img-wrap">
+                        <img src="assets/galaxy_watch_6_1776505256882.png" alt="Galaxy Watch 6" style="filter: drop-shadow(0 16px 32px rgba(0,0,0,0.5));">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section Real -->
+    <section id="contact" class="section-padding contact-section">
+        <div class="container animate-reveal">
+            <div style="text-align: center; margin-bottom: 64px;">
+                <h2 class="headline-lg">Get in touch.</h2>
+                <p class="text-body" style="margin-top: 16px; color: #a1a1a6;">Our premium support team is ready to assist you 24/7.</p>
+            </div>
+            
+            <div class="contact-grid">
+                <div class="support-card">
+                    <div class="support-card-glow"></div>
+                    <h3 style="position: relative; z-index: 2;">Nexus Premium Support.</h3>
+                    <p class="text-body" style="color: #a1a1a6; margin-bottom: 40px; position: relative; z-index: 2;">Experience concierge-level assistance for all your devices. From setup to advanced troubleshooting, we're here.</p>
+                    
+                    <ul style="display: flex; flex-direction: column; gap: 24px; position: relative; z-index: 2;">
+                        <li style="display: flex; align-items: center; gap: 16px;">
+                            <div style="width: 48px; height: 48px; border-radius: 50%; background: rgba(255,255,255,0.1); display: flex; align-items: center; justify-content: center;">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+                            </div>
+                            <div>
+                                <h4 style="font-size: 18px; font-weight: 600;">Live Chat</h4>
+                                <p style="color: #a1a1a6; font-size: 14px;">Available 24/7</p>
+                            </div>
+                        </li>
+                        <li style="display: flex; align-items: center; gap: 16px;">
+                            <div style="width: 48px; height: 48px; border-radius: 50%; background: rgba(255,255,255,0.1); display: flex; align-items: center; justify-content: center;">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+                            </div>
+                            <div>
+                                <h4 style="font-size: 18px; font-weight: 600;">Phone Support</h4>
+                                <p style="color: #a1a1a6; font-size: 14px;">+91 1123467890</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="contact-form-glass">
+                    <form class="contact-form">
+                        <div class="input-group">
+                            <input type="text" placeholder="Full Name" required>
+                        </div>
+                        <div class="input-group">
+                            <input type="email" placeholder="Email Address" required>
+                        </div>
+                        <div class="input-group">
+                            <select required>
+                                <option value="" disabled selected>Select Topic</option>
+                                <option>Order Support</option>
+                                <option>Technical Issue</option>
+                                <option>General Inquiry</option>
+                            </select>
+                        </div>
+                        <div class="input-group">
+                            <textarea rows="5" placeholder="How can we help you?" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-light" style="width: 100%; padding: 20px; font-size: 17px; margin-top: 16px;">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-col">
+                <h4>Shop and Learn</h4>
+                <ul>
+                    <li><a href="#apple">Store</a></li>
+                    <li><a href="#apple">Mac</a></li>
+                    <li><a href="#apple">iPhone</a></li>
+                    <li><a href="#apple">Watch</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Services</h4>
+                <ul>
+                    <li><a href="#">Nexus Premium</a></li>
+                    <li><a href="#">Nexus Care</a></li>
+                    <li><a href="#">Trade In</a></li>
+                    <li><a href="#">Financing</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Nexus Store</h4>
+                <ul>
+                    <li><a href="#">Find a Store</a></li>
+                    <li><a href="#">Genius Bar</a></li>
+                    <li><a href="#">Today at Nexus</a></li>
+                    <li><a href="#">Order Status</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>About Nexus</h4>
+                <ul>
+                    <li><a href="#about">Newsroom</a></li>
+                    <li><a href="#about">Nexus Leadership</a></li>
+                    <li><a href="#about">Career Opportunities</a></li>
+                    <li><a href="#about">Investors</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="container" style="display: flex; justify-content: space-between; padding: 0; max-width: 1200px;">
+            <p>Copyright © 2026 Nexus Inc. All rights reserved.</p>
+            <div style="display: flex; gap: 16px;">
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Use</a>
+                <a href="#">Legal</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Core Logic -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const buttons = document.querySelectorAll('.btn');
+            const badge = document.querySelector('.bag-badge');
+            let cartCount = 0;
+
+            // Create toast element
+            const toast = document.createElement('div');
+            toast.className = 'toast';
+            toast.innerHTML = `
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0066cc" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+                <span>Added to Bag</span>
+            `;
+            document.body.appendChild(toast);
+
+            // Analysis & Rectification: Smoothly intercept all commerce buttons
+            buttons.forEach(btn => {
+                const text = btn.innerText.toLowerCase();
+                if (text.includes('buy') || text.includes('add') || text.includes('shop')) {
+                    btn.addEventListener('click', (e) => {
+                        e.preventDefault();
+                        
+                        // Increment count
+                        cartCount++;
+                        badge.innerText = cartCount;
+                        badge.classList.add('visible');
+
+                        // Show toast
+                        toast.classList.add('show');
+                        setTimeout(() => {
+                            toast.classList.remove('show');
+                        }, 2500);
+
+                        // Haptic feedback animation
+                        btn.style.transform = 'scale(0.95)';
+                        setTimeout(() => btn.style.transform = '', 100);
+                    });
+                }
+            });
+
+            // Analysis: Ensure reveal animations trigger on load for visible elements
+            const reveals = document.querySelectorAll('.animate-reveal, .hero-reveal');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('active');
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            reveals.forEach(r => observer.observe(r));
+        });
+    </script>
+</body>
+</html>
