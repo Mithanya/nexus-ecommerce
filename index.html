@@ -659,27 +659,42 @@
         }
 
         @media (max-width: 768px) {
+            .section-padding { padding: 64px 0; }
             .container { padding: 0 20px; }
-            .bento-grid { grid-template-columns: 1fr; }
+            .bento-grid { grid-template-columns: 1fr; gap: 20px; }
             .col-12, .col-8, .col-6, .col-4 { grid-column: span 1; }
             
             .bento-card {
                 flex-direction: column;
-                padding: 32px;
+                padding: 32px 24px;
                 text-align: center;
+                min-height: auto !important;
             }
-            .bento-card .card-content { width: 100%; display: flex; flex-direction: column; align-items: center; }
-            .bento-card .card-image-wrap { width: 100%; height: 280px; margin-top: 32px; }
+            .bento-card .card-content { width: 100%; display: flex; flex-direction: column; align-items: center; margin-bottom: 24px; }
+            .bento-card .card-image-wrap { width: 100%; height: 260px; margin-top: 0; }
             
-            .about-section { padding: 120px 20px; }
+            .about-section { padding: 100px 20px; }
             .about-glass-card { padding: 60px 24px; border-radius: 32px; }
-            .about-headline { font-size: 32px; }
+            .about-headline { font-size: clamp(28px, 8vw, 40px); }
             
-            .offer-card { padding: 32px 24px; }
-            .offer-img-wrap { height: 220px; }
+            .offer-card { padding: 32px 24px; min-height: 450px; }
+            .offer-img-wrap { height: 200px; margin-top: 24px; }
             
             .footer-grid { grid-template-columns: 1fr; text-align: center; }
             .footer-col h4 { margin-top: 24px; }
+        }
+
+        /* Target iPhone 12 Pro Max / Large Mobiles */
+        @media (max-width: 480px) {
+            .headline-xl { font-size: 40px; }
+            .hero { padding: 80px 20px; }
+            .hero h1 { font-size: 44px; margin-bottom: 24px; }
+            .hero-visual img { max-width: 250px; }
+            .nav-logo { font-size: 20px; }
+            .bag-icon { margin-left: 12px; }
+            
+            .support-card h3 { font-size: 32px; }
+            .contact-form-glass { padding: 32px 20px; }
         }
         /* Toast Notification */
         .toast {
