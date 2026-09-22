@@ -1,89 +1,101 @@
-# Nexus Premium E-Commerce Website
+# Nexus Store
 
-A modern multi-brand e-commerce website inspired by Apple’s design language.
-This project emphasizes clean UI design, responsive layouts, and smooth user experience.
+A responsive full-stack commerce experience for premium consumer technology. Nexus combines an editorial React storefront with a Django API, SQLite persistence, product filtering, shopping bag interactions, and order creation.
 
----
+## Highlights
 
-## Live Demo
+- Responsive React and Vite storefront for desktop and mobile
+- Animated iPhone 18 Pro Max Burgundy launch hero
+- Product departments for phones, computers, and wearables
+- Three products displayed per department
+- Product catalog loaded from Django JSON APIs
+- Shopping bag with quantity controls and totals
+- Card and UPI checkout interface
+- Orders and order items persisted in SQLite
+- Contact form connected to the backend API
+- Local product imagery served through Vite
 
-https://mithanya.github.io/nexus-ecommerce/
+## Stack
 
----
+- **Frontend:** React, Vite, modern CSS
+- **Backend:** Python, Django
+- **Database:** SQLite
+- **API:** Django JSON endpoints
 
-## Features
+## Repository Layout
 
-* Premium Apple-style user interface
-* Multi-brand product sections (Apple, Samsung, OnePlus, Google)
-* Fully responsive design for mobile and desktop
-* Smooth animations and transitions
-* Interactive elements for enhanced user experience
-* Bento grid-based product layout
-* Contact form with modern glassmorphism design
-
----
-
-## Tech Stack
-
-* HTML5
-* CSS3
-* Lightweight scripting for interactivity
-
----
-
-## Project Structure
-
-```bash id="dsyk5h"
-nexus-ecommerce/
-│── index.html
-│── assets/
-│   ├── product images
-│   └── other assets
+```text
+.
+├── backend/                 Django project configuration
+├── store_api/               Products, orders, migrations, and API views
+├── frontend/                React and Vite application
+│   └── src/                 React components and styles
+├── assets/                  Product images
+├── manage.py                Django command-line entry point
+├── requirements.txt         Python dependencies
+└── db.sqlite3               Local development database
 ```
 
----
+## Local Development
 
-## Deployment
+### 1. Start the Django API
 
-This project is deployed using GitHub Pages.
-The website is hosted directly from the repository and updates automatically with each push.
+From the repository root:
 
----
-
-## How to Run Locally
-
-1. Clone the repository:
-
-```bash id="30l7l7"
-git clone https://github.com/Mithanya/nexus-ecommerce.git
+```powershell
+python -m pip install -r requirements.txt
+python manage.py migrate
+python manage.py runserver 127.0.0.1:8000
 ```
 
-2. Navigate to the project folder:
+The API is available at `http://127.0.0.1:8000`.
 
-```bash id="qmc19y"
-cd nexus-ecommerce
+### 2. Start the React app
+
+Open a second terminal:
+
+```powershell
+cd frontend
+npm install
+npm run dev
 ```
 
-3. Open `index.html` in a web browser
+The storefront is available at `http://127.0.0.1:5173`.
 
----
+## API Endpoints
 
-## Future Improvements
+| Method | Endpoint | Purpose |
+| --- | --- | --- |
+| `GET` | `/api/products/` | Return the product catalog |
+| `GET` | `/api/products/?category=iphone` | Filter products by department |
+| `POST` | `/api/orders/` | Validate and save an order |
+| `POST` | `/api/contact/` | Submit a support message |
 
-* User authentication system
-* Dedicated shopping cart page
-* Payment integration
-* Backend connectivity
-* Order management features
+Example order payload:
 
----
+```json
+{
+	"customerName": "Nexus customer",
+	"paymentMethod": "card",
+	"items": [
+		{ "productId": 11, "quantity": 1 }
+	]
+}
+```
 
-## Author
+## Verification
 
-Mithanya Murugesan
+```powershell
+python manage.py check
+python manage.py migrate
+cd frontend
+npm run build
+```
 
----
+## Payment Note
+
+Checkout currently creates a pending order and provides a complete demo payment flow. Live payment capture requires a provider such as Stripe or Razorpay, merchant credentials, and webhook verification.
 
 ## License
 
-This project is open-source and available under the MIT License.
+This project is provided for development and portfolio use.

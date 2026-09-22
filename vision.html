@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vision - Nexus</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="script.js" defer></script>
+</head>
+<body>
+
+    <!-- Scroll Progress -->
+    <div class="scroll-progress"></div>
+
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-left">
+                <a href="index.html" class="nav-logo">Nexus.</a>
+            </div>
+            <div class="nav-right">
+                <div class="nav-links">
+                    <a href="index.html#apple">Apple</a>
+                    <a href="index.html#samsung">Samsung</a>
+                    <a href="index.html#oneplus">OnePlus</a>
+                    <a href="index.html#google">Google</a>
+                    <a href="store.html">Store</a>
+                    <a href="vision.html" class="active">Vision</a>
+                    <a href="support.html">Support</a>
+                </div>
+                <div class="bag-icon">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"></path>
+                        <line x1="3" y1="6" x2="21" y2="6"></line>
+                        <path d="M16 10a4 4 0 0 1-8 0"></path>
+                    </svg>
+                    <div class="bag-badge">0</div>
+                </div>
+                <button id="dark-mode-toggle" aria-label="Toggle dark mode">🌙</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Vision Content -->
+    <main>
+        <section style="height: 100vh; background: #000000; color: #ffffff; display: flex; align-items: center; justify-content: center; text-align: center; position: relative; overflow: hidden;">
+            <div class="reveal">
+                <span class="pulse-badge">The Vision</span>
+                <h1 style="font-size: clamp(36px, 6vw, 64px); font-weight: 800; margin: 20px 0; line-height: 1.1;">Beyond the Horizon.</h1>
+                <p class="muted" style="max-width: 600px; margin: 0 auto; font-size: 20px; color: #a1a1a6;">We believe technology should be invisible yet indispensable. Our mission is to craft tools that disappear into your life while amplifying your potential.</p>
+            </div>
+        </section>
+
+        <section style="padding: 100px 24px; max-width: 1024px; margin: 0 auto; min-height: 50vh; display: flex; align-items: center;">
+            <div class="reveal">
+                <h2 style="font-size: 40px; margin-bottom: 30px;">Craftsmanship.</h2>
+                <p class="muted" style="font-size: 19px; line-height: 1.8;">Every curve of a Nexus device is deliberate. Every material choice is made with sustainability and longevity in mind. We don't just build electronics; we build legacies.</p>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-col">
+                <h4>Shop and Learn</h4>
+                <ul>
+                    <li><a href="index.html#apple">Store</a></li>
+                    <li><a href="index.html#apple">Mac</a></li>
+                    <li><a href="index.html#apple">iPhone</a></li>
+                    <li><a href="index.html#apple">Watch</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Services</h4>
+                <ul>
+                    <li><a href="#">Nexus Premium</a></li>
+                    <li><a href="#">Nexus Care</a></li>
+                    <li><a href="#">Trade In</a></li>
+                    <li><a href="#">Financing</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Nexus Store</h4>
+                <ul>
+                    <li><a href="#">Find a Store</a></li>
+                    <li><a href="#">Genius Bar</a></li>
+                    <li><a href="#">Today at Nexus</a></li>
+                    <li><a href="#">Order Status</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>About Nexus</h4>
+                <ul>
+                    <li><a href="index.html#about">Newsroom</a></li>
+                    <li><a href="index.html#about">Nexus Leadership</a></li>
+                    <li><a href="index.html#about">Career Opportunities</a></li>
+                    <li><a href="index.html#about">Investors</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>Copyright © 2026 Nexus Inc. All rights reserved.</p>
+            <div class="footer-bottom-links">
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Use</a>
+                <a href="#">Legal</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Shopping Cart Drawer -->
+    <div class="cart-drawer-overlay"></div>
+    <div class="cart-drawer">
+        <div class="cart-header">
+            <h3>Shopping Bag</h3>
+            <button class="cart-close-btn">&times;</button>
+        </div>
+        <div class="cart-items-list">
+            <p class="cart-empty-msg">Your Bag is empty.</p>
+        </div>
+        <div class="cart-footer">
+            <div class="cart-summary-row">
+                <span>Subtotal</span>
+                <span class="cart-summary-total">₹0</span>
+            </div>
+            <button class="btn-checkout">Check Out</button>
+        </div>
+    </div>
+
+</body>
+</html>
