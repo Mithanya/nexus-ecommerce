@@ -135,7 +135,6 @@ h1, h2, h3, h4 {
     position: fixed;
     top: 0; left: 0; right: 0;
     height: 58px;
-    background: rgba(var(--color-bg) == #ffffff ? 255 : 15, var(--color-bg) == #ffffff ? 255 : 15, var(--color-bg) == #ffffff ? 255 : 26, 0.75);
     background: rgba(255, 255, 255, 0.75);
     backdrop-filter: saturate(180%) blur(20px);
     -webkit-backdrop-filter: saturate(180%) blur(20px);
